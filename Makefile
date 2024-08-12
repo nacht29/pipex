@@ -29,13 +29,13 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(OBJS) mandatory/main.c -L$(LIBFT_DIR) -lft -o $(NAME)
+	@$(CC) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo ""
 	@echo "$(AQUA)pipex executable programme compiled$(RESET)"
 # cc mandatory/pipex.o mandatory/utils.o -Llibft/ -lft -o pipex
 
 bonus: $(OBJS_B) $(LIBFT)
-	@$(CC) $(OBJS_B) bonus/main.c -L$(LIBFT_DIR) -lft -o $(NAME)
+	@$(CC) $(OBJS_B) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo ""
 	@echo "$(AQUA)(bonus)pipex executable programme compiled$(RESET)"
 

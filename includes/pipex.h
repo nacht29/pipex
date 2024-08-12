@@ -8,4 +8,6 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
+void	quit(const char *err_msg);
+
 #endif

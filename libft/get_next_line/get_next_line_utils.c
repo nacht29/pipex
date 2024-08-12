@@ -39,16 +39,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (final_str);
 }
 
-int	ft_strchr(const char *s, int c)
+int	has_newline(const char *s)
 {
-	char	ref;
 	char	*temp;
 
-	ref = (char)c;
 	temp = (char *)s;
 	while (*temp)
 	{
-		if (*temp == ref)
+		temp++;
+		if (*temp == '\n')
 			return (TRUE);
 		temp++;
 	}

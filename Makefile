@@ -42,7 +42,7 @@ bonus: $(OBJS_B) $(LIBFT)
 $(LIBFT): FORCE
 	@echo ""
 	@echo "$(YELLOW)compiling libft...$(RESET)"
-	@make -C	$(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 clean:
 	@make clean -C $(LIBFT_DIR)

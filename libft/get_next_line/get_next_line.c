@@ -19,6 +19,7 @@ char	*get_next_line(int fd)
 	{
 		add_node(&lst[fd], temp_buff);
 		free(temp_buff);
+
 	}
 	return (next_line);
 }
@@ -34,7 +35,7 @@ int	read_to_list(t_node **lst, int fd)
 		current = *lst;
 		while (current)
 		{
-			if (ft_strchr(current->str, '\n'))
+			if (has_newline(current->str))
 				return (1);
 			current = current->next;
 		}
@@ -99,7 +100,7 @@ char	*extract_line(t_node *lst, char **temp_buff)
 	line[0] = '\0';
 	while (lst)
 	{
-		if (ft_strchr(lst->str, '\n') == FALSE)
+		if (has_newline(lst->str) == FALSE)
 		{
 			temp = ft_strjoin(line, lst->str);
 			free(line);

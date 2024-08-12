@@ -14,11 +14,9 @@ int	main(int ac, char*av[])
 	if (parent < 0)
 		quit("Fork error ");
 	if (!parent)
-		// child_process();
-		;
+		child_process(av, end);
 	else
-		// parent_process();
-		;
+		parent_process(av, end);
 }
 
 void	parent_process(char **av, int *end)

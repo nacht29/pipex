@@ -42,15 +42,15 @@ bonus: $(OBJS_B) $(LIBFT)
 $(LIBFT): FORCE
 	@echo ""
 	@echo "$(YELLOW)compiling libft...$(RESET)"
-	@make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) -s
 
 clean:
-	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(LIBFT_DIR) -s
 	@rm -f $(OBJS) $(OBJS_B)
 	@echo "$(PURPLE)clean successful$(RESET)"
 
 fclean: clean
-	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(LIBFT_DIR) -s
 	@rm -f $(NAME)
 	@echo "$(PURPLE)fclean successful$(RESET)"
 

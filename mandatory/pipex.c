@@ -1,6 +1,6 @@
 #include "../includes/pipex.h"
 
-int	main(int ac, char*av[])
+int	main(int ac, char*av[], char **env)
 {
 	int		end[2];
 	pid_t	parent;
@@ -14,12 +14,12 @@ int	main(int ac, char*av[])
 	if (parent < 0)
 		quit("Fork error ");
 	if (!parent)
-		child_process(av, end);
+		child_process(av, env, end);
 	else
-		parent_process(av, end);
+		parent_process(av, env, end);
 }
 
-void	parent_process(char **av, int *end)
+void	parent_process(char **av, char **env, int *end)
 {
 	int	outfile;
 
@@ -31,10 +31,10 @@ void	parent_process(char **av, int *end)
 	close(end[0]);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
-	// exec_cmd();
+	exec_cmd(av[3], env);
 }
 
-void	child_process(char **av, int *end)
+void	child_process(char **av, char ** env, int *end)
 {
 	int	infile;
 
@@ -46,5 +46,5 @@ void	child_process(char **av, int *end)
 	close(infile);
 	dup2(end[1], STDOUT_FILENO);
 	close(end[1]);
-	// exec_cmd();
+	exec_cmd(av[2], env);
 }

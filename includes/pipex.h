@@ -10,8 +10,9 @@
 
 //utils
 void	quit(const char *err_msg);
+void	exec_cmd(char *cmd, char **env);
 
 //main
-void	parent_process(char **av, int *end);
-void	child_process(char **av, int *end); 
+void	parent_process(char **av, char **env, int *end);
+void	child_process(char **av, char ** env, int *end);
 #endif

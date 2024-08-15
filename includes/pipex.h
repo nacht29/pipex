@@ -13,5 +13,5 @@ void	quit(const char *err_msg);
 
 //main
 void	parent_process(char **av, int *end);
-void	child_process(char **av, int *end);
+void	child_process(char **av, int *end); 
 #endif

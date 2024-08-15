@@ -11,6 +11,8 @@
 //utils
 void	quit(const char *err_msg);
 void	exec_cmd(char *cmd, char **env);
+char	*find_path(char *cmd, char **env);
+void	free_str_arr(char ***str_arr);
 
 //main
 void	parent_process(char **av, char **env, int *end);

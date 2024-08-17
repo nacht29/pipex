@@ -19,7 +19,7 @@ void	exec_cmd(char *cmd, char **env)
 		quit("Command not found");
 	}
 	if (execve(path, args, env) == -1)
-		quit("Failed to execute command");;
+		quit("Failed to execute command");
 }
 
 char	*find_path(char *cmd, char **env)
@@ -50,13 +50,17 @@ char	*find_path(char *cmd, char **env)
 void	free_str_arr(char ***str_arr)
 {
 	char	**arr;
+	int		i;
 
+	if (!str_arr || !*str_arr)
+		return ;
 	arr = *str_arr;
-	while (arr)
+	i = 0;
+	while (arr[i])
 	{
-		free(*arr);
-		arr++;
+		free(arr[i]);
+		i++;
 	}
-	free(*str_arr);
+	free(arr);
 	*str_arr = NULL;
 }

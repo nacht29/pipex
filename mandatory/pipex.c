@@ -34,7 +34,7 @@ void	parent_process(char **av, char **env, int *end)
 	exec_cmd(av[3], env);
 }
 
-void	child_process(char **av, char ** env, int *end)
+void	child_process(char **av, char **env, int *end)
 {
 	int	infile;
 

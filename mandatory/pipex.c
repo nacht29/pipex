@@ -6,13 +6,13 @@ int	main(int ac, char*av[], char **env)
 	pid_t	parent;
 
 
-	if (ac != 5) // ac < 4 for bonus
+	if (ac != 5)
 		quit("Usage: ./pipex file1 cmd1 cmd2 file2");
 	if (pipe(end) < 0)
 		quit("Pipe error");
 	parent = fork();
 	if (parent < 0)
-		quit("Fork error ");
+		quit("Fork error");
 	if (!parent)
 		child_process(av, env, end);
 	else

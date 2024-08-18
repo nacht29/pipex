@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(LIBFT)
 bonus: $(OBJS_B) $(LIBFT)
 	@$(CC) $(OBJS_B) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo ""
-	@echo "$(AQUA)(bonus)pipex executable programme compiled$(RESET)"
+	@echo "$(AQUA)pipex_bonus executable programme compiled$(RESET)"
 
 $(LIBFT): FORCE
 	@echo ""

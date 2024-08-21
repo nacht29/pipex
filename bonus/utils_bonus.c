@@ -47,20 +47,15 @@ char	*find_path(char *cmd, char **env)
 	return (full_path);
 }
 
-void	free_str_arr(char ***str_arr)
+int	open_file(int ac, char **av, int file_mode)
 {
-	char	**arr;
-	int		i;
+	int	fd;
 
-	if (!str_arr || !*str_arr)
-		return ;
-	arr = *str_arr;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	*str_arr = NULL;
+	if (file_mode == INFILE)
+		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
+	else if (file_mode == OUTFILE)
+		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
+	if (fd < 0)
+		quit("Failed to open file");
+	return (fd);
 }

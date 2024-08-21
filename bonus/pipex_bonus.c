@@ -1,35 +1,27 @@
-#include "pipex_bonus.h"
+#include "../includes/pipex_bonus.h"
 
 int main(int ac, char *av[], char **env)
 {
 	int		cmd_id;
 	int		end[2];
+	int		outfile;
 	pid_t	proc_id;
 
 	if (ac < 5)
 		quit("Ussge: ./pipex file1 cmd1 cmd2 ... file2");
-	manage_files(ac, av, &cmd_id);
+	manage_files(ac, av, &cmd_id, &outfile);
 	while (cmd_id < ac - 2)
 	{
 		create_child_process(av[cmd_id], env);
 		cmd_id++;
 	}
+	dup2(outfile, STDOUT_FILENO);
+	close(outfile);
+	exec_cmd(av[ac - 2], env);
+	return (EXIT_SUCCESS);
 }
 
-int	open_files(int ac, char **av, int file_mode)
-{
-	int	fd;
-
-	if (file_mode == INFILE)
-		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
-	else if (file_mode == OUTFILE)
-		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
-	if (fd < 0)
-		quit("Failed to open file");
-	return (fd);
-}
-
-void	manage_files(int ac, char **av, int *cmd_id)
+void	manage_files(int ac, char **av, int *cmd_id, int *outfile)
 {
 	int	infile;
 
@@ -38,7 +30,10 @@ void	manage_files(int ac, char **av, int *cmd_id)
 	else
 	{
 		*cmd_id = 2;
-		infile = 0;
+		infile = open_file(ac, av, INFILE);
+		dup2(infile, STDIN_FILENO);
+		close(infile);
+		*outfile = open_file(ac, av, OUTFILE);
 	}
 }
 

@@ -6,6 +6,20 @@ void	quit(const char *err_msg)
 	exit(EXIT_FAILURE);
 }
 
+int	open_file(int ac, char **av, int file_mode)
+{
+	int	fd;
+
+	fd = 0;
+	if (file_mode == INFILE)
+		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
+	else if (file_mode == OUTFILE)
+		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
+	if (fd < 0)
+		quit("Failed to open file");
+	return (fd);
+}
+
 void	exec_cmd(char *cmd, char **env)
 {
 	char	*path;
@@ -45,17 +59,4 @@ char	*find_path(char *cmd, char **env)
 	}
 	free_str_arr(&dir_names);
 	return (full_path);
-}
-
-int	open_file(int ac, char **av, int file_mode)
-{
-	int	fd;
-
-	if (file_mode == INFILE)
-		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
-	else if (file_mode == OUTFILE)
-		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
-	if (fd < 0)
-		quit("Failed to open file");
-	return (fd);
 }

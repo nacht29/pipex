@@ -3,9 +3,7 @@
 int main(int ac, char *av[], char **env)
 {
 	int		cmd_id;
-	int		end[2];
 	int		outfile;
-	pid_t	proc_id;
 
 	if (ac < 5)
 		quit("Ussge: ./pipex file1 cmd1 cmd2 ... file2");
@@ -25,7 +23,7 @@ void	manage_files(int ac, char **av, int *cmd_id, int *outfile)
 {
 	int	infile;
 
-	if ("here_doc")
+	if (ft_strncmp(av[1], "here_doc", ft_strlen("here_doc")) == 0)
 		return ;
 	else
 	{
@@ -47,7 +45,7 @@ void	create_child_process(char *cmd, char **env)
 	proc_id = fork();
 	if (proc_id < 0)
 		quit("Fork error");
-	if (proc_id == 0) //represents the child
+	else if (proc_id == 0) //represents the child
 	{
 		close(end[0]);
 		dup2(end[1], STDOUT_FILENO);

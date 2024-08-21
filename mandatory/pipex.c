@@ -3,22 +3,28 @@
 int	main(int ac, char*av[], char **env)
 {
 	int		end[2];
-	pid_t	parent;
+	pid_t	proc_id;
 
 
 	if (ac != 5)
 		quit("Usage: ./pipex file1 cmd1 cmd2 file2");
 	if (pipe(end) < 0)
 		quit("Pipe error");
-	parent = fork();
-	if (parent < 0)
+	proc_id = fork();
+	if (proc_id < 0)
 		quit("Fork error");
-	if (!parent)
+	if (proc_id == 0)
 		child_process(av, env, end);
 	else
 		parent_process(av, env, end);
 }
 
+/*
+*receives input from the write end[1],
+then closes the write end
+*process the input with cmd2
+*redirects the processed input to outfile as output
+*/
 void	parent_process(char **av, char **env, int *end)
 {
 	int	outfile;
@@ -34,6 +40,14 @@ void	parent_process(char **av, char **env, int *end)
 	exec_cmd(av[3], env);
 }
 
+/*
+*on the write end[1]
+*closes read end[0]
+*reads from infile an dmake infile STDIN (0)
+*executes cmd1 for the input
+*writes the processed input to the write end[0]
+*input is piped to cmd2 for processing when the child process for cmd1 ends
+*/
 void	child_process(char **av, char **env, int *end)
 {
 	int	infile;

@@ -24,7 +24,9 @@ void	manage_files(int ac, char **av, int *cmd_id, int *outfile)
 	int	infile;
 
 	if (ft_strncmp(av[1], "here_doc", ft_strlen("here_doc")) == 0)
-		return ;
+	{
+		*cmd_id = 3;
+	}
 	else
 	{
 		*cmd_id = 2;
@@ -60,3 +62,4 @@ void	create_child_process(char *cmd, char **env)
 		wait(NULL);
 	}
 }
+

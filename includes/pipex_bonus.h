@@ -8,11 +8,12 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define INFILE 1
 # define OUTFILE 0
+# define INFILE 1
+# define OUTFILE_HD 2
 
 //main
-void	manage_files(int ac, char **av, int *cmd_id, int *outfile);
+void	manage_files_hd(int ac, char **av, int *cmd_id, int *outfile);
 void	create_child_process(char *cmd, char **env);
 
 //utils

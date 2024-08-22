@@ -15,6 +15,8 @@ int	open_file(int ac, char **av, int file_mode)
 		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
 	else if (file_mode == OUTFILE)
 		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
+	else if (file_mode = OUTFILE_HD)
+		fd = fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0622);
 	if (fd < 0)
 		quit("Failed to open file");
 	return (fd);

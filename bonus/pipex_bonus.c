@@ -7,7 +7,7 @@ int main(int ac, char *av[], char **env)
 
 	if (ac < 5)
 		quit("Ussge: ./pipex file1 cmd1 cmd2 ... file2");
-	manage_files(ac, av, &cmd_id, &outfile);
+	manage_files_hd(ac, av, &cmd_id, &outfile);
 	while (cmd_id < ac - 2)
 	{
 		create_child_process(av[cmd_id], env);
@@ -19,13 +19,14 @@ int main(int ac, char *av[], char **env)
 	return (EXIT_SUCCESS);
 }
 
-void	manage_files(int ac, char **av, int *cmd_id, int *outfile)
+void	manage_files_hd(int ac, char **av, int *cmd_id, int *outfile)
 {
 	int	infile;
 
 	if (ft_strncmp(av[1], "here_doc", ft_strlen("here_doc")) == 0)
 	{
 		*cmd_id = 3;
+		*outfile = open_file(ac, av, OUTFILE_HD);
 	}
 	else
 	{

@@ -45,14 +45,14 @@ void	create_child_process(char *cmd, char **env)
 	proc_id = fork();
 	if (proc_id < 0)
 		quit("Fork error");
-	else if (proc_id == 0) //represents the child
+	else if (proc_id == 0) // represents the child
 	{
 		close(end[0]);
 		dup2(end[1], STDOUT_FILENO);
 		close(end[1]);
 		exec_cmd(cmd, env);
 	}
-	else
+	else // parent
 	{
 		close(end[1]);
 		dup2(end[0], STDIN_FILENO);

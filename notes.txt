@@ -76,3 +76,31 @@ char	*find_path(char *cmd, char **env)
 	free_str_arr(&dir_names);
 	return (full_path);
 }
+
+============================================================================================================================================
+
+bonus:
+
+the flow is as below:
+
+cmd(n):
+Parent:
+-parent creates a pipe
+-parent forks into child process
+-parent closes the write end[1] and duplicates read end[0] to STDIN 
+-parent waits for the child to finish
+
+Child:
+-the child closes the read end
+-duplicates STDOUT to write end[1]
+-executes the command using execve
+________IMPORTANT_NOTE________
+-execve reads from STDIN as the input
+-hence, it is synonymous that the CHILD READS FROM STDIN AS INPUT
+-THAT IS HOW DATA IS CARRIEDFROM ONE PIPE TO THE OTHER
+-the child writes to the write end[1] via STDOUT
+-CONTENT ON THE WRITE END IS VISIBLE TO THE READ END
+-hence, parent on read end[0] will essentially store the modified content into STDIN
+-during the next pipe, in the CHILD, in EXEC_CMD, EXECVE reads from STDIN as input
+
+open the infile and duplicate into STDIN

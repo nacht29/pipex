@@ -68,7 +68,6 @@ void	here_doc(int ac, char **av)
 {
 	int		end[2];
 	pid_t	proc_id;
-	char	*line;
 
 	if (ac < 6)
 		invalid_input();

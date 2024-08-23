@@ -1,21 +1,12 @@
 #include "../includes/pipex_bonus.h"
 
-void	validate_input(int ac)
-{
-	if (ac < 5)
-		quit("Usage:\n"
-		"1) ./pipex infile cmd1 cmd2 ... outfile\n"
-		"2) ./pipex here_doc LIMITER cmd1 cmd2 ... outfile");
-}
-
 int main(int ac, char *av[], char **env)
 {
 	int		cmd_id;
 	int		outfile;
 
-	validate_input(ac);
 	if (ac < 5)
-		quit("Ussge: ./pipex file1 cmd1 cmd2 ... file2");
+		invalid_input();
 	manage_files_hd(ac, av, &cmd_id, &outfile);
 	while (cmd_id < ac - 2)
 	{
@@ -36,6 +27,7 @@ void	manage_files_hd(int ac, char **av, int *cmd_id, int *outfile)
 	{
 		*cmd_id = 3;
 		*outfile = open_file(ac, av, OUTFILE_HD);
+		here_doc(ac, av);
 	}
 	else
 	{
@@ -54,8 +46,7 @@ void	create_child_process(char *cmd, char **env)
 
 	if (pipe(end) < 0)
 		quit("Pipe error");
-	proc_id = fork();
-	if (proc_id < 0)
+	if ((proc_id = fork()) < 0)
 		quit("Fork error");
 	else if (proc_id == 0) // represents the child
 	{
@@ -73,3 +64,38 @@ void	create_child_process(char *cmd, char **env)
 	}
 }
 
+void	here_doc(int ac, char **av)
+{
+	int		end[2];
+	pid_t	proc_id;
+	char	*line;
+
+	if (ac < 6)
+		invalid_input();
+	if (pipe(end) < 0)
+		quit("Pipe error");
+	if ((proc_id = fork()) < 0)
+		quit("Fork erorr");
+	else if (proc_id == 0)
+		here_doc_prompt(av[2]);
+	else
+	{
+		close(end[1]);
+		dup2(end[0], STDIN_FILENO);
+		close(end[0]);
+		wait(NULL);
+	}
+}
+
+void    here_doc_prompt(char *limiter)
+{
+	char	*line;
+
+	while (1)
+	{
+		write(STDOUT_FILENO, "heredoc> ", 9);
+		line = get_next_line(0);
+		if (ft_strncmp(limiter, line, (ft_strlen(line) - 1)) == 0)
+			break;
+	}
+}

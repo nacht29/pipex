@@ -16,12 +16,17 @@
 void	manage_files_hd(int ac, char **av, int *cmd_id, int *outfile);
 void	create_child_process(char *cmd, char **env);
 
-//utils
+//here_doc
+void	here_doc(int ac, char **av);
+void    here_doc_prompt(char *limiter);
+
+//files_and_exit
 void	quit(const char *err_msg);
 int	    open_file(int ac, char **av, int file_mode);
 void	exec_cmd(char *cmd, char **env);
 char	*find_path(char *cmd, char **env);
 
-//extra utils
+//utils
 void	free_str_arr(char ***str_arr);
+void	invalid_input();
 #endif

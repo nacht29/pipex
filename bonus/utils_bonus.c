@@ -17,3 +17,10 @@ void	free_str_arr(char ***str_arr)
 	free(arr);
 	*str_arr = NULL;
 }
+
+void	invalid_input()
+{
+	quit("Usage:\n"
+	"1) ./pipex infile cmd1 cmd2 ... outfile\n"
+	"2) ./pipex here_doc LIMITER cmd1 cmd2 ... outfile");
+}

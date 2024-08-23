@@ -1,10 +1,19 @@
 #include "../includes/pipex_bonus.h"
 
+void	validate_input(int ac)
+{
+	if (ac < 5)
+		quit("Usage:\n"
+		"1) ./pipex infile cmd1 cmd2 ... outfile\n"
+		"2) ./pipex here_doc LIMITER cmd1 cmd2 ... outfile");
+}
+
 int main(int ac, char *av[], char **env)
 {
 	int		cmd_id;
 	int		outfile;
 
+	validate_input(ac);
 	if (ac < 5)
 		quit("Ussge: ./pipex file1 cmd1 cmd2 ... file2");
 	manage_files_hd(ac, av, &cmd_id, &outfile);

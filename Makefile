@@ -3,7 +3,7 @@ NAME = pipex
 SRCS = mandatory/pipex.c mandatory/utils.c
 OBJS = ${SRCS:.c=.o}
 
-SRCS_B = bonus/pipex_bonus.c bonus/utils_bonus.c bonus/utils_extra_bonus.c
+SRCS_B = bonus/pipex_bonus.c bonus/files_and_exit.c bonus/utils_bonus.c 
 OBJS_B = ${SRCS_B:.c=.o}
 
 HEADER = -Iincludes
@@ -56,8 +56,8 @@ fclean: clean
 
 re: fclean all
 
-re_bonus: fclean bonus
+bre: fclean bonus
 
 FORCE:
 
-.PHONY: all bonus clean fclean re re_bonus
+.PHONY: all bonus clean fclean re bre

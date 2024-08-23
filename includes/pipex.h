@@ -8,13 +8,10 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-//files_and_exit
+//utils
 void	quit(const char *err_msg);
 void	exec_cmd(char *cmd, char **env);
 char	*find_path(char *cmd, char **env);
-
-//utils
-void	validate_input(int ac);
 void	free_str_arr(char ***str_arr);
 
 //main

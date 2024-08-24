@@ -1,4 +1,7 @@
 #include "get_next_line.h"
+#include "../libft.h"
+
+static char	*process_newline_node(t_node *lst, char **temp_buff, char *line);
 
 char	*get_next_line(int fd)
 {
@@ -73,24 +76,6 @@ void	add_node(t_node **lst, char *buffer)
 	end->next = new_node;
 }
 
-static char	*process_newline_node(t_node *lst, char **temp_buff, char *line)
-{
-	size_t	i;
-	char	*temp;
-	char	*new_line;
-
-	i = 0;
-	while (lst->str[i] != '\n')
-		i++;
-	temp = ft_substr(lst->str, 0, i + 1);
-	new_line = ft_strjoin(line, temp);
-	free(line);
-	free(temp);
-	if ((lst->str)[i + 1] != '\0')
-		*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
-	return (new_line);
-}
-
 char	*extract_line(t_node *lst, char **temp_buff)
 {
 	char	*line;
@@ -114,4 +99,22 @@ char	*extract_line(t_node *lst, char **temp_buff)
 		lst = lst->next;
 	}
 	return (line);
+}
+
+static char	*process_newline_node(t_node *lst, char **temp_buff, char *line)
+{
+	size_t	i;
+	char	*temp;
+	char	*new_line;
+
+	i = 0;
+	while (lst->str[i] != '\n')
+		i++;
+	temp = ft_substr(lst->str, 0, i + 1);
+	new_line = ft_strjoin(line, temp);
+	free(line);
+	free(temp);
+	if ((lst->str)[i + 1] != '\0')
+		*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
+	return (new_line);
 }

@@ -18,7 +18,7 @@ void	create_child_process(char *cmd, char **env);
 
 //here_doc
 void	here_doc(int ac, char **av);
-void    here_doc_prompt(char *limiter);
+void    here_doc_prompt(int end[2], char *limiter);
 
 //files_and_exit
 void	quit(const char *err_msg);

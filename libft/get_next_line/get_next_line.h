@@ -1,5 +1,5 @@
-#ifndef GET_NEXT_LINE__H
-# define GET_NEXT_LINE__H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -7,6 +7,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
+# include "../libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 20
@@ -35,9 +36,6 @@ void	add_node(t_node **lst, char *buffer);
 char	*extract_line(t_node *lst, char **temp_buff);
 void	free_list(t_node **lst);
 
-// size_t	ft_strlen(const char *s);
-// char	*ft_strjoin(char const *s1, char const *s2);
-int		has_newline(const char *s);
-// char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		has_newline(const char *s, int c);
 void	free_list(t_node **lst);
 #endif

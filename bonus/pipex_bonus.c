@@ -76,7 +76,7 @@ void	here_doc(int ac, char **av)
 	if ((proc_id = fork()) < 0)
 		quit("Fork erorr");
 	else if (proc_id == 0)
-		here_doc_prompt(av[2]);
+		here_doc_prompt(end, av[2]);
 	else
 	{
 		close(end[1]);
@@ -86,24 +86,19 @@ void	here_doc(int ac, char **av)
 	}
 }
 
-void    here_doc_prompt(char *limiter)
+void    here_doc_prompt(int end[2], char *limiter)
 {
 	char	*line;
 
-	ft_printf("heredoc>\n");
-	int fd = open("t3.txt", O_RDWR);
-	while (1)
+	ft_printf("heredoc:\n");
+	while ((line = get_next_line(0)) != NULL)
 	{
-		line = get_next_line(0);
-		// ft_printf("line: %s", line);
-		int i = 0;
-		while (line[i])
-		{
-			write(fd, &line[i], 1);
-			i++;
-		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
-			quit("Success");
-			// return ;
+			break;
+		write(end[1], line, ft_strlen(line));
+		free(line);
 	}
+	free(line);
+	close(end[1]);
+	exit(EXIT_SUCCESS);
 }

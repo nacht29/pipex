@@ -1,14 +1,15 @@
 #include "get_next_line.h"
 
-int	has_newline(const char *s)
+int	has_newline(const char *s, int c)
 {
+	char	ref;
 	char	*temp;
 
+	ref = (char)c;
 	temp = (char *)s;
 	while (*temp)
 	{
-		temp++;
-		if (*temp == '\n')
+		if (*temp == ref)
 			return (TRUE);
 		temp++;
 	}

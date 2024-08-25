@@ -6,7 +6,7 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:16:23 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/25 18:20:24 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/25 22:33:50 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	here_doc(int ac, char **av)
 void	here_doc_prompt(int end[2], char *limiter)
 {
 	char	*line;
+	size_t	check;
 
 	ft_printf("heredoc:\n");
 	while (1)
@@ -111,7 +112,11 @@ void	here_doc_prompt(int end[2], char *limiter)
 		if (!line)
 			break ;
 		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
-			break ;
+		{
+			check = ft_strlen(limiter);
+			if (line[check] == '\n' || line[check] == '\0')
+				break ;	
+		}
 		write(end[1], line, ft_strlen(line));
 		free(line);
 	}

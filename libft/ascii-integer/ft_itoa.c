@@ -6,14 +6,14 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:05:53 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/15 16:18:30 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/25 18:35:09 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 static size_t	alloc_len(int n);
-static void	make_str(char **str, size_t len, int n, long num);
+static void		make_str(char **str, size_t len, int n, long num);
 
 /*
 converts integer to string

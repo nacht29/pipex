@@ -90,11 +90,20 @@ void    here_doc_prompt(char *limiter)
 {
 	char	*line;
 
+	ft_printf("heredoc>\n");
+	int fd = open("t3.txt", O_RDWR);
 	while (1)
 	{
-		write(STDOUT_FILENO, "heredoc> ", 9);
 		line = get_next_line(0);
-		if (ft_strncmp(limiter, line, (ft_strlen(line) - 1)) == 0)
-			break;
+		// ft_printf("line: %s", line);
+		int i = 0;
+		while (line[i])
+		{
+			write(fd, &line[i], 1);
+			i++;
+		}
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+			quit("Success");
+			// return ;
 	}
 }

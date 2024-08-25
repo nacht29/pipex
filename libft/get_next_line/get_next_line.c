@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 18:28:32 by yachan            #+#    #+#             */
+/*   Updated: 2024/08/25 18:29:26 by yachan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
@@ -86,7 +98,8 @@ static char	*process_newline_node(t_node *lst, char **temp_buff, char *line)
 	free(line);
 	free(temp);
 	if ((lst->str)[i + 1] != '\0')
-		*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
+		*temp_buff = ft_substr(lst->str, (i + 1),
+				(ft_strlen(lst->str) - (i + 1)));
 	return (new_line);
 }
 

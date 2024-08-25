@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 18:16:23 by yachan            #+#    #+#             */
+/*   Updated: 2024/08/25 18:20:24 by yachan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pipex_bonus.h"
 
-int main(int ac, char *av[], char **env)
+int	main(int ac, char *av[], char **env)
 {
 	int		cmd_id;
 	int		outfile;
@@ -46,16 +58,17 @@ void	create_child_process(char *cmd, char **env)
 
 	if (pipe(end) < 0)
 		quit("Pipe error");
-	if ((proc_id = fork()) < 0)
+	proc_id = fork();
+	if (proc_id < 0)
 		quit("Fork error");
-	else if (proc_id == 0) // represents the child
+	else if (proc_id == 0)
 	{
 		close(end[0]);
 		dup2(end[1], STDOUT_FILENO);
 		close(end[1]);
 		exec_cmd(cmd, env);
 	}
-	else // parent
+	else
 	{
 		close(end[1]);
 		dup2(end[0], STDIN_FILENO);
@@ -73,7 +86,8 @@ void	here_doc(int ac, char **av)
 		invalid_input();
 	if (pipe(end) < 0)
 		quit("Pipe error");
-	if ((proc_id = fork()) < 0)
+	proc_id = fork();
+	if (proc_id < 0)
 		quit("Fork erorr");
 	else if (proc_id == 0)
 		here_doc_prompt(end, av[2]);
@@ -86,15 +100,18 @@ void	here_doc(int ac, char **av)
 	}
 }
 
-void    here_doc_prompt(int end[2], char *limiter)
+void	here_doc_prompt(int end[2], char *limiter)
 {
 	char	*line;
 
 	ft_printf("heredoc:\n");
-	while ((line = get_next_line(0)) != NULL)
+	while (1)
 	{
+		line = get_next_line(0);
+		if (!line)
+			break ;
 		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
-			break;
+			break ;
 		write(end[1], line, ft_strlen(line));
 		free(line);
 	}

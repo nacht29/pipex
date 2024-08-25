@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 18:32:38 by yachan            #+#    #+#             */
+/*   Updated: 2024/08/25 18:33:04 by yachan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pipex.h"
 
 void	quit(const char *err_msg)
@@ -39,7 +51,7 @@ char	*find_path(char *cmd, char **env)
 	{
 		full_path = ft_strjoin(dir_names[i], ft_strjoin("/", cmd));
 		if (access(full_path, F_OK | X_OK) == 0)
-			break;
+			break ;
 		free(full_path);
 		full_path = NULL;
 	}

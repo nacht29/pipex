@@ -6,14 +6,14 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:11:19 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/15 16:21:33 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/25 18:30:55 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 static size_t	alloc_len(char const *s, char c);
-static void	split(char const *s, char c, char ***str_arr, size_t itr);
+static void		split(char const *s, char c, char ***str_arr, size_t itr);
 
 /*
 *splits str according to delimiter and store the splitted substr in an array

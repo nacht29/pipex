@@ -13,7 +13,8 @@
 #include "../libft.h"
 
 /*
-*iterate through a linked list and apply function f() to the contents of each node
+*iterate through a linked list and 
+apply function f() to the contents of each node
 *return value: none
 */
 void	ft_lstiter(t_list *lst, void (*f)(void *))

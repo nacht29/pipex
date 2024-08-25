@@ -6,7 +6,7 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:18:26 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/15 16:22:29 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/25 18:31:45 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 *compares two str
-*return value: 0 if both str are identical || non-zero value if both str are not identical
+*return value: 0 if both str are identical 
+|| non-zero value if both str are not identical
 */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

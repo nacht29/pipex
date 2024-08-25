@@ -6,7 +6,7 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:15:01 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/15 16:21:36 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/25 18:31:20 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 *locates the (first occurence) of char in a str
-*return value: a substr startting from the (first occurence) of char || NULL if char is not found
+*return value: a substr starting from the (first occurence) of char 
+|| NULL if char is not found
 */
 char	*ft_strchr(const char *s, int c)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 18:25:33 by yachan            #+#    #+#             */
+/*   Updated: 2024/08/25 18:26:53 by yachan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
@@ -18,15 +30,15 @@ void	create_child_process(char *cmd, char **env);
 
 //here_doc
 void	here_doc(int ac, char **av);
-void    here_doc_prompt(int end[2], char *limiter);
+void	here_doc_prompt(int end[2], char *limiter);
 
 //files_and_exit
 void	quit(const char *err_msg);
-int	    open_file(int ac, char **av, int file_mode);
+int		open_file(int ac, char **av, int file_mode);
 void	exec_cmd(char *cmd, char **env);
 char	*find_path(char *cmd, char **env);
 
 //utils
 void	free_str_arr(char ***str_arr);
-void	invalid_input();
+void	invalid_input(void);
 #endif

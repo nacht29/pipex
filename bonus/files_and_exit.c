@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   files_and_exit.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 18:16:26 by yachan            #+#    #+#             */
+/*   Updated: 2024/08/25 18:17:17 by yachan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pipex_bonus.h"
 
 void	quit(const char *err_msg)
@@ -12,7 +24,7 @@ int	open_file(int ac, char **av, int file_mode)
 
 	fd = 0;
 	if (file_mode == INFILE)
-		fd = open(av[1],  O_RDONLY | O_CREAT, 0644);
+		fd = open(av[1], O_RDONLY | O_CREAT, 0644);
 	else if (file_mode == OUTFILE)
 		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
 	else if (file_mode == OUTFILE_HD)
@@ -55,7 +67,7 @@ char	*find_path(char *cmd, char **env)
 	{
 		full_path = ft_strjoin(dir_names[i], ft_strjoin("/", cmd));
 		if (access(full_path, F_OK | X_OK) == 0)
-			break;
+			break ;
 		free(full_path);
 		full_path = NULL;
 	}

@@ -1,7 +1,10 @@
 NAME = pipex
 
-SRCS = srcs/pipex.c srcs/files_and_exit.c srcs/utils.c 
+SRCS = mandatory/pipex.c mandatory/utils.c
 OBJS = ${SRCS:.c=.o}
+
+SRCS_B = bonus/pipex_bonus.c bonus/files_and_exit.c bonus/utils_bonus.c 
+OBJS_B = ${SRCS_B:.c=.o}
 
 HEADER = -Iincludes
 
@@ -31,6 +34,11 @@ $(NAME): $(OBJS) $(LIBFT)
 	@echo "$(AQUA)pipex executable programme compiled$(RESET)"
 # cc mandatory/pipex.o mandatory/utils.o -Llibft/ -lft -o pipex
 
+bonus: $(OBJS_B) $(LIBFT)
+	@$(CC) $(OBJS_B) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@echo ""
+	@echo "$(AQUA)pipex_bonus executable programme compiled$(RESET)"
+
 $(LIBFT): FORCE
 	@echo ""
 	@echo "$(YELLOW)compiling libft...$(RESET)"
@@ -38,7 +46,7 @@ $(LIBFT): FORCE
 
 clean:
 	@make clean -C $(LIBFT_DIR) -s
-	@rm -f $(OBJS)
+	@rm -f $(OBJS) $(OBJS_B)
 	@echo "$(PURPLE)clean successful$(RESET)"
 
 fclean: clean
@@ -48,6 +56,8 @@ fclean: clean
 
 re: fclean all
 
+bre: fclean bonus
+
 FORCE:
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re bre

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_and_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nacht <nacht@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:16:26 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/26 15:43:39 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/26 16:22:20 by nacht            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*find_path(char *cmd, char **env)
 {
 	char	*full_path;
 	char	**dir_names;
+	char	*temp;
 	int		i;
 
 	i = 0;
@@ -67,9 +68,11 @@ char	*find_path(char *cmd, char **env)
 	i = -1;
 	while (dir_names[++i])
 	{
-		full_path = ft_strjoin(dir_names[i], ft_strjoin("/", cmd));
+		temp = ft_strjoin("/", cmd);
+		full_path = ft_strjoin(dir_names[i], temp);
 		if (access(full_path, F_OK | X_OK) == 0)
 			break ;
+		free(temp);
 		free(full_path);
 		full_path = NULL;
 	}

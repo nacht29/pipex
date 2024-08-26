@@ -6,7 +6,7 @@
 /*   By: nacht <nacht@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:16:26 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/26 16:22:20 by nacht            ###   ########.fr       */
+/*   Updated: 2024/08/26 16:34:22 by nacht            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	open_file(int ac, char **av, int file_mode)
 
 	fd = 0;
 	if (file_mode == INFILE)
-		fd = open(av[1], O_RDONLY | O_CREAT, 0644);
+		fd = open(av[1], O_RDONLY, 0644);
 	else if (file_mode == OUTFILE)
 		fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0622);
 	else if (file_mode == OUTFILE_HD)

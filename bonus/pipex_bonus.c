@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nacht <nacht@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:16:23 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/26 15:15:02 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/26 16:45:39 by nacht            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void	here_doc_prompt(int end[2], char *limiter)
 	char	*line;
 	size_t	check;
 
-	ft_printf("heredoc:\n");
 	while (1)
 	{
+		ft_printf("> ");
 		line = get_next_line(0);
 		if (!line)
 			break ;

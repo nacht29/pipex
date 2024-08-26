@@ -6,7 +6,7 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:16:26 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/25 18:17:17 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:43:39 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	quit(const char *err_msg)
 {
-	ft_printf("%s\n", err_msg);
+	dup2(STDERR_FILENO, STDOUT_FILENO);
+	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
+	write(STDERR_FILENO, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

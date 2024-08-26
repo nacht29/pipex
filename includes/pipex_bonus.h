@@ -6,7 +6,7 @@
 /*   By: yachan <yachan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:25:33 by yachan            #+#    #+#             */
-/*   Updated: 2024/08/25 18:26:53 by yachan           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:00:01 by yachan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <sys/types.h>
-# include <sys/wait.h>
+# include <sys/wait.h> 
 # include <unistd.h>
 
 # define OUTFILE 0
